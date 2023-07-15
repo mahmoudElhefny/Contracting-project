@@ -10,7 +10,7 @@ namespace Data.Models.About
     public class AboutPage :EntityBase
     {
         public string header { set; get; }
-        public string bg { set; get; }
+        public byte[] bg { set; get; } /// Image
         [ForeignKey("SectionId")]
         public int SectionId { set; get; }
         public Section Section { set; get; }

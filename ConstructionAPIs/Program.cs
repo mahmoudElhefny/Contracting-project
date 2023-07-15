@@ -1,4 +1,5 @@
 using Infrastructure.Construction_Context;
+using Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -13,6 +14,7 @@ builder.Services.AddSwaggerGen();
 //builder.Services.AddDbContext<ConstructionContext>();
 builder.Services.AddDbContext<ConstructionContext>(options =>
        options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStr")));
+builder.Services.AddScoped<IAboutPageRepository, AboutPageRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -10,7 +10,8 @@ namespace Data.Models.About
     {
         public string title { set; get;  }
         public string desc { set; get; }
-        public string image { set; get; } 
+        public byte[] image { set; get; }  // image
+
         public AboutPage Aboutpage { set; get; }
     }
 }
