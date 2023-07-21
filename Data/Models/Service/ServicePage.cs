@@ -12,7 +12,7 @@ namespace Data.Models.Service
         public string header { set; get;  }
         public string bg { set; get;  }
 
-        [ForeignKey("ServiceId")]
+        [ForeignKey("Service")]
         public int ServiceId { set; get; }
         public Service Service { set; get;  }
     }
