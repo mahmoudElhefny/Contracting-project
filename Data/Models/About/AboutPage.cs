@@ -11,7 +11,8 @@ namespace Data.Models.About
     {
         public string header { set; get; }
         public byte[] bg { set; get; } /// Image
-        [ForeignKey("SectionId")]
+        public string headerAR { set; get;}
+        [ForeignKey("Section")]
         public int SectionId { set; get; }
         public Section Section { set; get; }
 

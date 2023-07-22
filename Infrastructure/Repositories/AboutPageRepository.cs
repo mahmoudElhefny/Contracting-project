@@ -18,29 +18,53 @@ namespace Infrastructure.Repositories
             this.construction_Context = construction_Context;
         }
 
-        public async Task<dynamic> GetAll()
+        public async Task<dynamic> GetAll(string Lang)
         {
-            //var aboutPage = await construction_Context.AboutPage.Include(i => i.Section).Select( s =>
-            //new AboutPageDto
-            //{
-            //    header = s.header,
-            //    bg = s.bg,
-            //    title = s.Section.title,
-            //    desc = s.Section.desc,
-            //    image = s.Section.image
-            //}).ToListAsync();
-            return null;
+            if (Lang == "AR")
+            {
+             var aboutPage = await construction_Context.AboutPage.Include(i => i.Section)
+                   .OrderByDescending(o => o.Id)
+                   .Select(s =>
+                         new AboutPageDto
+                         {
+                             header = s.headerAR,
+                             bg = s.bg,
+                             title = s.Section.TitleAR,
+                             desc = s.Section.DescAR,
+                             image = s.Section.image
+                         })
+                   .FirstOrDefaultAsync();
+
+                return aboutPage;
+            }
+            else
+            {
+              var aboutPage = await construction_Context.AboutPage.Include(i => i.Section)
+                    .OrderByDescending(o => o.Id)
+
+                .Select(s =>
+                new AboutPageDto
+                {
+                    header = s.header,
+                    bg = s.bg,
+                    title = s.Section.title,
+                    desc = s.Section.desc,
+                    image = s.Section.image
+                }).FirstOrDefaultAsync();
+                return aboutPage;
+            }
+            
         }
 
-        public dynamic Insert(AboutPageDto dto)
+        public async Task<dynamic> Insert(AboutDto dto)
         {
             using var dataStream = new MemoryStream();
-
-             dto.bg.CopyToAsync(dataStream);
+            using var dataStream2 = new MemoryStream();
+            dto.bg.CopyToAsync(dataStream);
             var bgTemp = dataStream.ToArray();
             dataStream.Position = 0;
-            dto.image.CopyToAsync(dataStream);
-            var imageTemp = dataStream.ToArray();
+            dto.image.CopyToAsync(dataStream2);
+            var imageTemp = dataStream2.ToArray();
              
             AboutPage aboutPage = new AboutPage()
             {
@@ -53,10 +77,12 @@ namespace Infrastructure.Repositories
                     image = imageTemp
                 }
             };
-            construction_Context.Add(aboutPage);
-            construction_Context.SaveChanges();
+            await construction_Context.AddAsync(aboutPage);
+             construction_Context.SaveChangesAsync();
             return aboutPage;
             
         }
+
+       
     }
 }

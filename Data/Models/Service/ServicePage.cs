@@ -10,10 +10,11 @@ namespace Data.Models.Service
     public class ServicePage :EntityBase
     {
         public string header { set; get;  }
+        public string headerAR { set; get;  }
         public string bg { set; get;  }
 
-        [ForeignKey("ServiceId")]
-        public int ServiceId { set; get; }
+        //[ForeignKey("Service")]
+       // public int ServiceId { set; get; }
         public Service Service { set; get;  }
     }
 }

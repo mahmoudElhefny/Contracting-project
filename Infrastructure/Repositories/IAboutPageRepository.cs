@@ -9,7 +9,7 @@ namespace Infrastructure.Repositories
 {
     public interface IAboutPageRepository
     {
-        public Task<dynamic> GetAll();
-        public dynamic Insert( AboutPageDto pageDto);
+        public Task<dynamic> GetAll(string Lang);
+        public Task<dynamic> Insert( AboutDto pageDto);
     }
 }

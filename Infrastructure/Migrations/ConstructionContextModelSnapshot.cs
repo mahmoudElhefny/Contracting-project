@@ -41,6 +41,10 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("headerAR")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("SectionId")
@@ -57,13 +61,57 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("DescAR")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TitleAR")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("desc")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("image")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Section");
+                });
+
+            modelBuilder.Entity("Data.Models.Contact.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("bg")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("header")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts");
+                });
+
+            modelBuilder.Entity("Data.Models.Contact.ContactIcons", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ContactInfoId")
+                        .HasColumnType("int");
 
                     b.Property<string>("title")
                         .IsRequired()
@@ -71,7 +119,188 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Section");
+                    b.HasIndex("ContactInfoId")
+                        .IsUnique();
+
+                    b.ToTable("ContactIcons");
+                });
+
+            modelBuilder.Entity("Data.Models.Contact.ContactInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ContactId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("desc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("desc1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("fax")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("phone")
+                        .HasColumnType("int");
+
+                    b.Property<string>("subTitle1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("subTitle2")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("web")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContactId")
+                        .IsUnique();
+
+                    b.ToTable("ContactInfos");
+                });
+
+            modelBuilder.Entity("Data.Models.Contact.Icon", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ContactIconsId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("icon")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContactIconsId");
+
+                    b.ToTable("Icon");
+                });
+
+            modelBuilder.Entity("Data.Models.Content.Content", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ContentPageId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TitleAR")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContentPageId")
+                        .IsUnique();
+
+                    b.ToTable("Content");
+                });
+
+            modelBuilder.Entity("Data.Models.Content.ContentItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("ContentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("desc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("descAR")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("titleAR")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContentId");
+
+                    b.ToTable("ContentItem");
+                });
+
+            modelBuilder.Entity("Data.Models.Content.ContentPage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("bg")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("header")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("headerAR")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContentPage");
                 });
 
             modelBuilder.Entity("Data.Models.Service.Service", b =>
@@ -82,11 +311,21 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("ServicePageId")
+                        .HasColumnType("int");
+
                     b.Property<string>("title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("titleAR")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ServicePageId")
+                        .IsUnique();
 
                     b.ToTable("Services");
                 });
@@ -106,11 +345,19 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("descAR")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("icon")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("titleAR")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -129,9 +376,6 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("int");
-
                     b.Property<string>("bg")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -140,10 +384,11 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("headerAR")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("ServiceId")
-                        .IsUnique();
+                    b.HasKey("Id");
 
                     b.ToTable("ServicePage");
                 });
@@ -159,6 +404,68 @@ namespace Infrastructure.Migrations
                     b.Navigation("Section");
                 });
 
+            modelBuilder.Entity("Data.Models.Contact.ContactIcons", b =>
+                {
+                    b.HasOne("Data.Models.Contact.ContactInfo", "ContactInfo")
+                        .WithOne("ContactIcons")
+                        .HasForeignKey("Data.Models.Contact.ContactIcons", "ContactInfoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ContactInfo");
+                });
+
+            modelBuilder.Entity("Data.Models.Contact.ContactInfo", b =>
+                {
+                    b.HasOne("Data.Models.Contact.Contact", "Contact")
+                        .WithOne("ContactInfo")
+                        .HasForeignKey("Data.Models.Contact.ContactInfo", "ContactId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contact");
+                });
+
+            modelBuilder.Entity("Data.Models.Contact.Icon", b =>
+                {
+                    b.HasOne("Data.Models.Contact.ContactIcons", "ContactIcons")
+                        .WithMany("Icons")
+                        .HasForeignKey("ContactIconsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ContactIcons");
+                });
+
+            modelBuilder.Entity("Data.Models.Content.Content", b =>
+                {
+                    b.HasOne("Data.Models.Content.ContentPage", "ContentPage")
+                        .WithOne("Content")
+                        .HasForeignKey("Data.Models.Content.Content", "ContentPageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ContentPage");
+                });
+
+            modelBuilder.Entity("Data.Models.Content.ContentItem", b =>
+                {
+                    b.HasOne("Data.Models.Content.Content", null)
+                        .WithMany("ContentItem")
+                        .HasForeignKey("ContentId");
+                });
+
+            modelBuilder.Entity("Data.Models.Service.Service", b =>
+                {
+                    b.HasOne("Data.Models.Service.ServicePage", "ServicePage")
+                        .WithOne("Service")
+                        .HasForeignKey("Data.Models.Service.Service", "ServicePageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ServicePage");
+                });
+
             modelBuilder.Entity("Data.Models.Service.ServiceItem", b =>
                 {
                     b.HasOne("Data.Models.Service.Service", "Service")
@@ -170,29 +477,48 @@ namespace Infrastructure.Migrations
                     b.Navigation("Service");
                 });
 
-            modelBuilder.Entity("Data.Models.Service.ServicePage", b =>
-                {
-                    b.HasOne("Data.Models.Service.Service", "Service")
-                        .WithOne("ServicePage")
-                        .HasForeignKey("Data.Models.Service.ServicePage", "ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Service");
-                });
-
             modelBuilder.Entity("Data.Models.About.Section", b =>
                 {
-                    b.Navigation("Aboutpage")
+                    b.Navigation("Aboutpage");
+                });
+
+            modelBuilder.Entity("Data.Models.Contact.Contact", b =>
+                {
+                    b.Navigation("ContactInfo")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Data.Models.Contact.ContactIcons", b =>
+                {
+                    b.Navigation("Icons");
+                });
+
+            modelBuilder.Entity("Data.Models.Contact.ContactInfo", b =>
+                {
+                    b.Navigation("ContactIcons")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Data.Models.Content.Content", b =>
+                {
+                    b.Navigation("ContentItem");
+                });
+
+            modelBuilder.Entity("Data.Models.Content.ContentPage", b =>
+                {
+                    b.Navigation("Content")
                         .IsRequired();
                 });
 
             modelBuilder.Entity("Data.Models.Service.Service", b =>
                 {
-                    b.Navigation("ServicePage")
-                        .IsRequired();
-
                     b.Navigation("serviceItems");
+                });
+
+            modelBuilder.Entity("Data.Models.Service.ServicePage", b =>
+                {
+                    b.Navigation("Service")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

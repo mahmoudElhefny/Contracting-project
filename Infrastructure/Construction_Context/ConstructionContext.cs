@@ -1,4 +1,6 @@
 ﻿using Data.Models.About;
+using Data.Models.Contact;
+using Data.Models.Content;
 using Data.Models.Service;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,6 +19,13 @@ namespace Infrastructure.Construction_Context
         public DbSet<Service> Services { set; get;  }
         public DbSet<ServicePage> ServicePage {  set; get; }    
         public DbSet<ServiceItem> ServiceItems { set; get; }
+        public DbSet<ContentItem> ContentItem { set; get; }
+        public DbSet<ContentPage> ContentPage { set; get; }
+        public DbSet<Content> Content { set; get; }
+
+        public DbSet<Contact> Contacts { set; get; }
+        public DbSet<ContactInfo> ContactInfos { set; get; }
+        public DbSet<ContactIcons> ContactIcons { set; get; }
 
         public ConstructionContext(DbContextOptions<ConstructionContext> options) :base(options)
         {
@@ -26,8 +35,9 @@ namespace Infrastructure.Construction_Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AboutPage>().HasOne(o=>o.Section).WithOne(w=>w.Aboutpage).HasForeignKey<AboutPage>(f=>f.SectionId);
-            modelBuilder.Entity<ServicePage>().HasOne(s => s.Service).WithOne(s => s.ServicePage).HasForeignKey<ServicePage>(s => s.ServiceId);
+            modelBuilder.Entity<ServicePage>().HasOne(s => s.Service).WithOne(s => s.ServicePage).HasForeignKey<Service>(s => s.ServicePageId);
             modelBuilder.Entity<ServiceItem>().HasOne(i => i.Service).WithMany(m => m.serviceItems).HasForeignKey(f => f.ServiceId);
+            modelBuilder.Entity<ContentPage>().HasOne(o => o.Content).WithOne(o => o.ContentPage).HasForeignKey<Content>(f => f.ContentPageId);
         }
     }
 }
