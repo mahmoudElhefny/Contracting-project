@@ -48,6 +48,7 @@ builder.Services.AddDbContext<ConstructionContext>(options =>
 builder.Services.AddScoped<IAboutPageRepository, AboutPageRepository>();
 builder.Services.AddScoped<IServicePageRepository, ServicePageRepository>();
 builder.Services.AddScoped<IContentPageRepository, ContentPageRepository>();
+builder.Services.AddScoped<IContactPageRepository, ContactPageRepository>();
 //builder.Services.AddCors();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
