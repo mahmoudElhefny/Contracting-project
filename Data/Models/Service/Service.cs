@@ -14,12 +14,10 @@ namespace Data.Models.Service
         public string title { set; get; }
         public string titleAR { set; get; }
         [ForeignKey("ServicePage")]
-        [JsonIgnore]
         public int ServicePageId { set; get;  }
-        [JsonIgnore]
-        public ServicePage ServicePage {  get; set; }
-       
-        public ICollection<ServiceItem> serviceItems { set; get; }
+        public ServicePage ServicePage { get; set; } = new ServicePage();
+
+        public ICollection<ServiceItem> serviceItems { set; get; } = new HashSet<ServiceItem>();
 
     }
 }

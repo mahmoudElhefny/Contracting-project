@@ -16,10 +16,10 @@ namespace Data.Models.Service
         public string descAR { set; get; }
         public  string icon { set; get; }
         [ForeignKey("Service")]
-        [JsonIgnore]
+        
         public int ServiceId { set; get;  }
         [JsonIgnore]
-        public Service Service { set; get; }
+        public Service Service { set; get; } = new Service();
 
 
     }

@@ -8,6 +8,6 @@ namespace Infrastructure.Repositories
 {
     public interface IContactPageRepository
     {
-        public Task<dynamic> GetAll();
+        public Task<dynamic> GetAll(string Lang);
     }
 }

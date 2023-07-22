@@ -4,6 +4,7 @@ using Infrastructure.Construction_Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ConstructionContext))]
-    partial class ConstructionContextModelSnapshot : ModelSnapshot
+    [Migration("20230722200323_init9")]
+    partial class init9
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -103,7 +105,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contact");
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("Data.Models.Contact.ContactIcons", b =>
@@ -208,7 +210,7 @@ namespace Infrastructure.Migrations
                     b.HasIndex("ContactId")
                         .IsUnique();
 
-                    b.ToTable("ContactInfo");
+                    b.ToTable("ContactInfos");
                 });
 
             modelBuilder.Entity("Data.Models.Contact.Icon", b =>

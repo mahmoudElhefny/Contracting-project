@@ -15,7 +15,7 @@ namespace ConstructionAPIs.Controllers
             this.servicePageRepository = servicePageRepository;
         }
         [HttpGet("GetAll")]
-        public async Task<IActionResult> GetAll(string Lang)
+        public async Task<IActionResult> GetAll(string Lang ="EN")
         {
             var res = await servicePageRepository.GetAll(Lang);
             return Ok(res);

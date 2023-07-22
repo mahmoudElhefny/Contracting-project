@@ -14,7 +14,7 @@ namespace Data.Models.Service
         public string bg { set; get;  }
 
         //[ForeignKey("Service")]
-       // public int ServiceId { set; get; }
-        public Service Service { set; get;  }
+        // public int ServiceId { set; get; }
+        public Service Service { set; get; } = new Service();
     }
 }

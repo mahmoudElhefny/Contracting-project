@@ -23,8 +23,8 @@ namespace Infrastructure.Construction_Context
         public DbSet<ContentPage> ContentPage { set; get; }
         public DbSet<Content> Content { set; get; }
 
-        public DbSet<Contact> Contacts { set; get; }
-        public DbSet<ContactInfo> ContactInfos { set; get; }
+        public DbSet<Contact> Contact { set; get; }
+        public DbSet<ContactInfo> ContactInfo { set; get; }
         public DbSet<ContactIcons> ContactIcons { set; get; }
 
         public ConstructionContext(DbContextOptions<ConstructionContext> options) :base(options)
