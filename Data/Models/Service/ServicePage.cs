@@ -13,8 +13,13 @@ namespace Data.Models.Service
         public string headerAR { set; get;  }
         public string bg { set; get;  }
 
+
         //[ForeignKey("Service")]
         // public int ServiceId { set; get; }
         public Service Service { set; get; } = new Service();
+
+        [ForeignKey("Service")]
+        public int ServiceId { set; get; }
+
     }
 }

@@ -71,5 +71,84 @@ G:\Construction Project FreeLance\ConstructionAPIs\ConstructionAPIs\obj\Debug\ne
 G:\Construction Project FreeLance\ConstructionAPIs\ConstructionAPIs\obj\Debug\net6.0\ref\ConstructionAPIs.dll
 G:\Construction Project FreeLance\ConstructionAPIs\ConstructionAPIs\bin\Debug\net6.0\Humanizer.dll
 G:\Construction Project FreeLance\ConstructionAPIs\ConstructionAPIs\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+<<<<<<< HEAD
 G:\Construction Project FreeLance\ConstructionAPIs\ConstructionAPIs\bin\Debug\net6.0\ServiceStack.Text.dll
 G:\Construction Project FreeLance\ConstructionAPIs\ConstructionAPIs\bin\Debug\net6.0\libman.json
+=======
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\appsettings.Development.json
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\appsettings.json
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\ConstructionAPIs.exe
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\ConstructionAPIs.deps.json
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\ConstructionAPIs.runtimeconfig.json
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\ConstructionAPIs.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\ConstructionAPIs.pdb
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Humanizer.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.OpenApi.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\System.Drawing.Common.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\System.Runtime.Caching.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\System.Security.Permissions.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\System.Windows.Extensions.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Data.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Infrastructure.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Infrastructure.pdb
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Data.pdb
+E:\PRojectFreeLance\ConstructionAPIs\obj\Debug\net6.0\ConstructionAPIs.csproj.AssemblyReference.cache
+E:\PRojectFreeLance\ConstructionAPIs\obj\Debug\net6.0\ConstructionAPIs.GeneratedMSBuildEditorConfig.editorconfig
+E:\PRojectFreeLance\ConstructionAPIs\obj\Debug\net6.0\ConstructionAPIs.AssemblyInfoInputs.cache
+E:\PRojectFreeLance\ConstructionAPIs\obj\Debug\net6.0\ConstructionAPIs.AssemblyInfo.cs
+E:\PRojectFreeLance\ConstructionAPIs\obj\Debug\net6.0\ConstructionAPIs.csproj.CoreCompileInputs.cache
+E:\PRojectFreeLance\ConstructionAPIs\obj\Debug\net6.0\ConstructionAPIs.MvcApplicationPartsAssemblyInfo.cache
+E:\PRojectFreeLance\ConstructionAPIs\obj\Debug\net6.0\staticwebassets.build.json
+E:\PRojectFreeLance\ConstructionAPIs\obj\Debug\net6.0\staticwebassets.development.json
+E:\PRojectFreeLance\ConstructionAPIs\obj\Debug\net6.0\scopedcss\bundle\ConstructionAPIs.styles.css
+E:\PRojectFreeLance\ConstructionAPIs\obj\Debug\net6.0\ConstructionAPIs.csproj.CopyComplete
+E:\PRojectFreeLance\ConstructionAPIs\obj\Debug\net6.0\ConstructionAPIs.dll
+E:\PRojectFreeLance\ConstructionAPIs\obj\Debug\net6.0\refint\ConstructionAPIs.dll
+E:\PRojectFreeLance\ConstructionAPIs\obj\Debug\net6.0\ConstructionAPIs.pdb
+E:\PRojectFreeLance\ConstructionAPIs\obj\Debug\net6.0\ConstructionAPIs.genruntimeconfig.cache
+E:\PRojectFreeLance\ConstructionAPIs\obj\Debug\net6.0\ref\ConstructionAPIs.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\AutoMapper.dll
+E:\PRojectFreeLance\ConstructionAPIs\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+E:\PRojectFreeLance\ConstructionAPIs\obj\Debug\net6.0\ConstructionAPIs.MvcApplicationPartsAssemblyInfo.cs
+>>>>>>> 876bc9b42d087ff01e0d7ad96b0e0034584a44ed
