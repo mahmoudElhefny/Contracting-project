@@ -30,12 +30,9 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("SectionId")
-                        .HasColumnType("int");
-
-                    b.Property<byte[]>("bg")
+                    b.Property<string>("bg")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("header")
                         .IsRequired()
@@ -47,10 +44,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("SectionId")
-                        .IsUnique();
-
-                    b.ToTable("AboutPage");
+                    b.ToTable("AboutPage", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.About.Section", b =>
@@ -61,6 +55,9 @@ namespace Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AboutPageId")
+                        .HasColumnType("int");
+
                     b.Property<string>("DescAR")
                         .HasColumnType("nvarchar(max)");
 
@@ -70,15 +67,18 @@ namespace Infrastructure.Migrations
                     b.Property<string>("desc")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("image")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("image")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Section");
+                    b.HasIndex("AboutPageId")
+                        .IsUnique();
+
+                    b.ToTable("Section", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.Contact.Contact", b =>
@@ -103,7 +103,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contact");
+                    b.ToTable("Contact", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.Contact.ContactIcons", b =>
@@ -130,7 +130,7 @@ namespace Infrastructure.Migrations
                     b.HasIndex("ContactInfoId")
                         .IsUnique();
 
-                    b.ToTable("ContactIcons");
+                    b.ToTable("ContactIcons", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.Contact.ContactInfo", b =>
@@ -208,7 +208,7 @@ namespace Infrastructure.Migrations
                     b.HasIndex("ContactId")
                         .IsUnique();
 
-                    b.ToTable("ContactInfo");
+                    b.ToTable("ContactInfo", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.Contact.Icon", b =>
@@ -242,7 +242,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("ContactIconsId");
 
-                    b.ToTable("Icon");
+                    b.ToTable("Icon", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.Content.Content", b =>
@@ -269,7 +269,7 @@ namespace Infrastructure.Migrations
                     b.HasIndex("ContentPageId")
                         .IsUnique();
 
-                    b.ToTable("Content");
+                    b.ToTable("Content", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.Content.ContentItem", b =>
@@ -307,7 +307,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("ContentId");
 
-                    b.ToTable("ContentItem");
+                    b.ToTable("ContentItem", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.Content.ContentPage", b =>
@@ -332,7 +332,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ContentPage");
+                    b.ToTable("ContentPage", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.Service.Service", b =>
@@ -359,7 +359,7 @@ namespace Infrastructure.Migrations
                     b.HasIndex("ServicePageId")
                         .IsUnique();
 
-                    b.ToTable("Services");
+                    b.ToTable("Services", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.Service.ServiceItem", b =>
@@ -397,7 +397,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("ServiceId");
 
-                    b.ToTable("ServiceItems");
+                    b.ToTable("ServiceItems", (string)null);
                 });
 
             modelBuilder.Entity("Data.Models.Service.ServicePage", b =>
@@ -422,18 +422,18 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ServicePage");
+                    b.ToTable("ServicePage", (string)null);
                 });
 
-            modelBuilder.Entity("Data.Models.About.AboutPage", b =>
+            modelBuilder.Entity("Data.Models.About.Section", b =>
                 {
-                    b.HasOne("Data.Models.About.Section", "Section")
-                        .WithOne("Aboutpage")
-                        .HasForeignKey("Data.Models.About.AboutPage", "SectionId")
+                    b.HasOne("Data.Models.About.AboutPage", "Aboutpage")
+                        .WithOne("Section")
+                        .HasForeignKey("Data.Models.About.Section", "AboutPageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Section");
+                    b.Navigation("Aboutpage");
                 });
 
             modelBuilder.Entity("Data.Models.Contact.ContactIcons", b =>
@@ -509,9 +509,10 @@ namespace Infrastructure.Migrations
                     b.Navigation("Service");
                 });
 
-            modelBuilder.Entity("Data.Models.About.Section", b =>
+            modelBuilder.Entity("Data.Models.About.AboutPage", b =>
                 {
-                    b.Navigation("Aboutpage");
+                    b.Navigation("Section")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Data.Models.Contact.Contact", b =>

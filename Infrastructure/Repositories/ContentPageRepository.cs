@@ -1,6 +1,8 @@
 ﻿using Data.Models.Content;
 using Infrastructure.Construction_Context;
 using Infrastructure.Dtos;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -66,7 +68,10 @@ namespace Infrastructure.Repositories
                 return result;
             }
 
-
         }
+
+        [HttpPost("CreateContent")]
+        public Task<IActionResult> InsertContent()
+    
     }
 }

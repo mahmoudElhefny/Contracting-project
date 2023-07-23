@@ -11,10 +11,10 @@ namespace Infrastructure.Dtos
     {
 
         public string ? header { set; get; }
-        public byte[] ? bg { set; get; }
+        public string ? bg { set; get; }
         public string ? title { set; get; }
         public string ? desc { set; get; }
-        public byte[] ?image { set; get; }
+        public string ?image { set; get; }
 
     }
 }

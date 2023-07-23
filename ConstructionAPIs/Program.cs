@@ -3,6 +3,7 @@ using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.FileProviders;
 using ServiceStack.Text;
 
 //var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -58,10 +59,18 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseStaticFiles();
+//app.UseStaticFiles();
+
+app.UseStaticFiles(new StaticFileOptions()
+{
+    RequestPath = "/Content",
+    FileProvider = new PhysicalFileProvider
+            (Path.Combine(Directory.GetCurrentDirectory(),
+            "Content" ))
+});
 app.UseHttpsRedirection();
 app.UseCors("Cors");
-app.UseRouting();
+//app.UseRouting();
 //app.UseCors(devCorsPolicy);
 app.UseAuthorization();
 

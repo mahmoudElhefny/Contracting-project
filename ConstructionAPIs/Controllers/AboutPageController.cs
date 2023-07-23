@@ -16,10 +16,10 @@ namespace ConstructionAPIs.Controllers
             this.aboutPageRepository = aboutPageRepository;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Details()
+        [HttpGet]
+        public async Task<IActionResult> Details(string Lang = "EN")
         {
-            var Lang = "EN";
+            
             var result = await aboutPageRepository.GetAll(Lang);
             return Ok(result);
 
@@ -35,6 +35,19 @@ namespace ConstructionAPIs.Controllers
                 return BadRequest("Only .png and .jpg images are allowed!");
 
             var result = aboutPageRepository.Insert(dto);
+            return Ok(result);
+        }
+
+        [HttpPost("CreateSection")]
+        public async Task<IActionResult> AddSection([FromForm] SectionDto dto)
+        {
+            if (dto.image == null)
+                return BadRequest("Poster is required!");
+
+            if (!_allowedExtenstions.Contains(Path.GetExtension(dto.image.FileName).ToLower()))
+                return BadRequest("Only .png and .jpg images are allowed!");
+
+            var result = aboutPageRepository.InsertSection(dto);
             return Ok(result);
         }
     }

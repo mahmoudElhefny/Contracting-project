@@ -1,7 +1,9 @@
 ﻿using Data.Models.About;
 using Infrastructure.Construction_Context;
 using Infrastructure.Dtos;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,67 +24,98 @@ namespace Infrastructure.Repositories
         {
             if (Lang == "AR")
             {
-             var aboutPage = await construction_Context.AboutPage.Include(i => i.Section)
-                   .OrderByDescending(o => o.Id)
-                   .Select(s =>
-                         new AboutPageDto
-                         {
-                             header = s.headerAR,
-                             bg = s.bg,
-                             title = s.Section.TitleAR,
-                             desc = s.Section.DescAR,
-                             image = s.Section.image
-                         })
-                   .FirstOrDefaultAsync();
-
+                var aboutPage =
+                    await construction_Context.AboutPage
+                    .Include(i => i.Section)
+                    .Where(f => f.Section.AboutPageId == f.Id)
+                     .OrderByDescending(o => o.Id)
+                     .Select(s =>
+                            new
+                            {
+                                header = s.headerAR,
+                                bg = s.bg,
+                                section = new
+                                {
+                                    title = s.Section.TitleAR,
+                                    desc = s.Section.DescAR,
+                                    image = s.Section.image
+                                }
+                            })
+                      .FirstOrDefaultAsync();
                 return aboutPage;
             }
             else
             {
-              var aboutPage = await construction_Context.AboutPage.Include(i => i.Section)
-                    .OrderByDescending(o => o.Id)
-
-                .Select(s =>
-                new AboutPageDto
-                {
-                    header = s.header,
-                    bg = s.bg,
-                    title = s.Section.title,
-                    desc = s.Section.desc,
-                    image = s.Section.image
-                }).FirstOrDefaultAsync();
+                var aboutPage =
+                    await construction_Context.AboutPage
+                    .Include(i => i.Section)
+                    .Where(f => f.Section.AboutPageId == f.Id)
+                     .OrderByDescending(o => o.Id)
+                     .Select(s =>
+                            new
+                            {
+                                header = s.header,
+                                bg = s.bg,
+                                section = new
+                                {
+                                    title = s.Section.title,
+                                    desc = s.Section.desc,
+                                    image = s.Section.image
+                                }
+                            })
+                      .FirstOrDefaultAsync();
                 return aboutPage;
+
             }
-            
         }
 
         public async Task<dynamic> Insert(AboutDto dto)
         {
-            using var dataStream = new MemoryStream();
-            using var dataStream2 = new MemoryStream();
-            dto.bg.CopyToAsync(dataStream);
-            var bgTemp = dataStream.ToArray();
-            dataStream.Position = 0;
-            dto.image.CopyToAsync(dataStream2);
-            var imageTemp = dataStream2.ToArray();
-             
-            AboutPage aboutPage = new AboutPage()
+            IFormFile file = dto.bg;
+            string NewName = Guid.NewGuid().ToString() + file.FileName;
+
+            FileStream fs = new FileStream(
+                 Path.Combine(Directory.GetCurrentDirectory(),
+                  "Content", "Images" ,"AboutPage" , NewName)
+                 , FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            file.CopyTo(fs);
+            fs.Position = 0;
+
+            var aboutPage = new AboutPage
             {
                 header = dto.header,
-                bg = bgTemp ,
-            Section = new Section
-                {
-                    title = dto.title,
-                    desc = dto.desc,
-                    image = imageTemp
-                }
+               headerAR = dto.headerAR ,
+                bg = NewName
             };
-            await construction_Context.AddAsync(aboutPage);
-             construction_Context.SaveChangesAsync();
-            return aboutPage;
-            
-        }
 
-       
+          await construction_Context.AboutPage.AddAsync(aboutPage);
+          construction_Context.SaveChanges();
+          return aboutPage;
+        }
+        public async Task<dynamic> InsertSection(SectionDto SectionDto)
+        {
+            IFormFile file = SectionDto.image;
+            string NewName = Guid.NewGuid().ToString() + file.FileName;
+
+            FileStream fs = new FileStream(
+                 Path.Combine(Directory.GetCurrentDirectory(),
+                  "Content", "Images","Section" , NewName)
+                 , FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            file.CopyTo(fs);
+            fs.Position = 0;
+            var Section = new Section
+            {
+                title = SectionDto.title,
+                TitleAR = SectionDto.TitleAR ,
+                DescAR = SectionDto.DescAR ,
+                desc = SectionDto.desc,
+                image = NewName,
+                AboutPageId = SectionDto.AboutPageId       
+            };
+            await construction_Context.AddAsync(Section);
+            construction_Context.SaveChanges();
+            return Section;
+
+        }
     }
 }

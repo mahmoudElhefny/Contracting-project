@@ -11,5 +11,6 @@ namespace Infrastructure.Repositories
     {
         public Task<dynamic> GetAll(string Lang);
         public Task<dynamic> Insert( AboutDto pageDto);
+        public Task<dynamic> InsertSection( SectionDto SectionDto);
     }
 }

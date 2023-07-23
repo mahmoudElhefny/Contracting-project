@@ -15,5 +15,6 @@ namespace Data.Models.Content
         public int ContentPageId { set; get; }
         public ContentPage ContentPage { set;get ; }
         public ICollection<ContentItem> ContentItem { set; get; }
+    
     }
 }
