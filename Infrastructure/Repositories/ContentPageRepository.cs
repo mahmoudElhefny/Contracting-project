@@ -1,6 +1,7 @@
 ﻿using Data.Models.Content;
 using Infrastructure.Construction_Context;
 using Infrastructure.Dtos;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using Microsoft.EntityFrameworkCore;
@@ -26,15 +27,16 @@ namespace Infrastructure.Repositories
             if (Lang == "AR")
             {
                 var result = await constructionContext.ContentPage
-                    .OrderByDescending(i => i.Id)
                     .Include(i => i.Content)
-                    .ThenInclude(i => i.ContentItem)
+                    .ThenInclude(t => t.ContentItem)
+                    //.Where(g => g.Id == g.Content.ContentPageId)
+                    .OrderByDescending(s => s.Id)
                     .Select(s => new
                     {
                         header = s.headerAR,
                         bg = s.bg,
                         title = s.Content.TitleAR,
-                        Contents = s.Content.ContentItem.Select(r => new 
+                        Contents = s.Content.ContentItem.Select(r => new
                         {
                             Id = r.Id,
                             title = r.titleAR,
@@ -42,14 +44,14 @@ namespace Infrastructure.Repositories
                             image = r.image
                         })
                     }).FirstOrDefaultAsync();
-                return result;
+                return result; 
             }
             else
             {
                 var result = await constructionContext.ContentPage
-               .OrderByDescending(i => i.Id)
                .Include(i => i.Content)
                .ThenInclude(i => i.ContentItem)
+               .OrderByDescending(i => i.Id)
                .Select(s => new 
                {
                     
@@ -70,8 +72,35 @@ namespace Infrastructure.Repositories
 
         }
 
-        [HttpPost("CreateContent")]
-        public Task<IActionResult> InsertContent()
-    
+        public async Task<dynamic> InsertContent( ContentDto dto)
+        {
+            IFormFile file = dto.bg;
+            string NewName = Guid.NewGuid().ToString() + file.FileName;
+
+            FileStream fs = new FileStream(
+                 Path.Combine(Directory.GetCurrentDirectory(),
+                  "Content", "Images", "ContentPage", NewName)
+                 , FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            file.CopyTo(fs);
+            fs.Position = 0;
+
+            ContentPage contentPage = new ContentPage
+            {
+                header = dto.header,
+                headerAR = dto.headerAR,
+                bg = NewName ,
+                Content = new Content
+                {
+                    Title = dto.Title,
+                    TitleAR = dto.TitleAR
+                }
+            };
+            await constructionContext.AddAsync(contentPage);
+            constructionContext.SaveChanges();
+            return contentPage;
+        }
+
+        
+        
     }
 }

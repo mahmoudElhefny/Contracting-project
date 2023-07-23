@@ -1,4 +1,5 @@
-﻿using Infrastructure.Repositories;
+﻿using Infrastructure.Dtos;
+using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
 namespace ConstructionAPIs.Controllers
 {
@@ -15,8 +16,17 @@ namespace ConstructionAPIs.Controllers
 
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll(string Lang="EN")
-        {
+         {
             var result = await _contentPageRepository.GetAll(Lang);
+            return Ok(result);
+        }
+
+        [HttpPost("CreateContent")]
+        public async Task<IActionResult> InsertContent([FromForm] ContentDto dto)
+        {
+            if (dto.bg == null)
+                return BadRequest("Poster is required!");
+            var result = await _contentPageRepository.InsertContent(dto);
             return Ok(result);
         }
     }
