@@ -1,4 +1,5 @@
-﻿using Infrastructure.Repositories;
+﻿using Infrastructure.Dtos;
+using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,6 +21,14 @@ namespace ConstructionAPIs.Controllers
         {
             var res = await contactPageRepository.GetAll(Lang);
             return Ok(res);
+        }
+        [HttpPost("CreateConcat")]
+        public async Task<IActionResult> CreateConcat([FromForm] ConcatDto dto)
+        {
+            if (dto.bg == null || dto.web == null)
+                return BadRequest("Poster is required!");
+            var result = await contactPageRepository.Insert(dto);
+            return Ok(result);
         }
     }
 }

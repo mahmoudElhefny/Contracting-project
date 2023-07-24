@@ -29,5 +29,14 @@ namespace ConstructionAPIs.Controllers
             var result = await _contentPageRepository.InsertContent(dto);
             return Ok(result);
         }
+
+        [HttpPost("CreateItem")]
+        public async Task<IActionResult> InsertItem([FromForm] ContentItemDto dto)
+        {
+            if (dto.image == null)
+                return BadRequest("Poster is required!");
+            var result = await _contentPageRepository.InsertItem(dto);
+            return Ok(result);
+        }
     }
 }

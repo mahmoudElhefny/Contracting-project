@@ -29,10 +29,10 @@ namespace Infrastructure.Repositories
                 var result = await constructionContext.ContentPage
                     .Include(i => i.Content)
                     .ThenInclude(t => t.ContentItem)
-                    //.Where(g => g.Id == g.Content.ContentPageId)
-                    .OrderByDescending(s => s.Id)
+                     .OrderByDescending(s => s.Id)
                     .Select(s => new
                     {
+                         Id = s.Id ,
                         header = s.headerAR,
                         bg = s.bg,
                         title = s.Content.TitleAR,
@@ -43,7 +43,9 @@ namespace Infrastructure.Repositories
                             desc = r.descAR,
                             image = r.image
                         })
-                    }).FirstOrDefaultAsync();
+                    })
+                   
+                    .FirstOrDefaultAsync();
                 return result; 
             }
             else
@@ -53,8 +55,7 @@ namespace Infrastructure.Repositories
                .ThenInclude(i => i.ContentItem)
                .OrderByDescending(i => i.Id)
                .Select(s => new 
-               {
-                    
+               {    
                    header = s.header,
                    bg = s.bg,
                    title = s.Content.Title,
@@ -64,7 +65,7 @@ namespace Infrastructure.Repositories
                        title = r.title,
                        desc = r.desc,
                        image = r.image
-                   }).ToList()
+                   })
                }).FirstOrDefaultAsync();
 
                 return result;
@@ -100,7 +101,29 @@ namespace Infrastructure.Repositories
             return contentPage;
         }
 
-        
-        
+        public async Task<dynamic> InsertItem(ContentItemDto dto)
+        {
+            IFormFile file = dto.image;
+            string NewName = Guid.NewGuid().ToString() + file.FileName;
+            FileStream fs = new FileStream(
+                 Path.Combine(Directory.GetCurrentDirectory(),
+                  "Content", "Images", "ContentPage", NewName)
+                 , FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            file.CopyTo(fs);
+            fs.Position = 0;
+            var contentItem = new ContentItem
+            {
+                title = dto.title,
+                titleAR = dto.titleAR,
+                desc =dto.desc ,
+                descAR = dto.descAR,
+                image = NewName,
+                ContentId = dto.ContentId
+            };
+            await constructionContext.AddAsync(contentItem);
+            constructionContext.SaveChanges();
+            return contentItem;
+        }
+
     }
 }

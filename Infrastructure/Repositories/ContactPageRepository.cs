@@ -1,5 +1,7 @@
 ﻿using Data.Models.Contact;
 using Infrastructure.Construction_Context;
+using Infrastructure.Dtos;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -97,5 +99,72 @@ namespace Infrastructure.Repositories
                 return result;
             }
         }
+
+        public async Task<dynamic> Insert(ConcatDto dto)
+        {
+            IFormFile file = dto.bg;
+            string NewName = Guid.NewGuid().ToString() + file.FileName;
+            FileStream fs = new FileStream(
+                 Path.Combine(Directory.GetCurrentDirectory(),
+                  "Content", "Images", "ContactPage", NewName)
+                 , FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            file.CopyTo(fs);
+            fs.Position = 0;
+
+            //IFormFile file2 = dto.web;
+            //string NewName2 = Guid.NewGuid().ToString() + file2.FileName;
+            //FileStream fs2 = new FileStream(
+            //     Path.Combine(Directory.GetCurrentDirectory(),
+            //      "Content", "Images", "ContactPage", NewName2)
+            //     , FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            //file2.CopyTo(fs2);
+            //fs2.Position = 0;
+
+            //IFormFile file3 = dto.Image;
+            //string NewName3 = Guid.NewGuid().ToString() + file3.FileName;
+            //FileStream fs3 = new FileStream(
+            //     Path.Combine(Directory.GetCurrentDirectory(),
+            //      "Content", "Images", "ContactPage", NewName3)
+            //     , FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            //file3.CopyTo(fs3);
+            //fs3.Position = 0;
+
+            var ContactPage = new Contact
+            {
+                header = dto.header,
+                bg = NewName,
+                headerAR = dto.headerAr,
+                ContactInfo = new ContactInfo
+                {
+                    title = dto.title,
+                    desc = dto.desc,
+                    desc1 = dto.desc1,
+                    titleAR = dto.titleAR,
+                    desc1AR = dto.desc1AR,
+                    descAR = dto.descAR,
+                    subTitle1 = dto.subTitle1,
+                    subTitle1AR = dto.subTitle1AR,
+                    subTitle2 = dto.subTitle2,
+                    subTitle2AR = dto.subTitle2AR,
+                    phone = dto.phone,
+                    email = dto.email,
+                    fax = dto.fax,
+                    web = NewName,
+                    image = NewName,
+                     ContactIcons = new ContactIcons
+                    {
+                        title = dto.IcontTitle,
+                        titleAR = dto.IcontTitleAR
+                    }
+                },
+
+            };
+            await constructionContext.AddAsync(ContactPage);
+            constructionContext.SaveChanges();
+
+            return ContactPage;
+            
+        }
+
     }
 }

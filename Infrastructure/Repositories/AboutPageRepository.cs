@@ -73,21 +73,18 @@ namespace Infrastructure.Repositories
         {
             IFormFile file = dto.bg;
             string NewName = Guid.NewGuid().ToString() + file.FileName;
-
             FileStream fs = new FileStream(
                  Path.Combine(Directory.GetCurrentDirectory(),
                   "Content", "Images" ,"AboutPage" , NewName)
                  , FileMode.OpenOrCreate, FileAccess.ReadWrite);
             file.CopyTo(fs);
             fs.Position = 0;
-
             var aboutPage = new AboutPage
             {
                 header = dto.header,
                headerAR = dto.headerAR ,
                 bg = NewName
             };
-
           await construction_Context.AboutPage.AddAsync(aboutPage);
           construction_Context.SaveChanges();
           return aboutPage;
