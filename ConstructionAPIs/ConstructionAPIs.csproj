@@ -24,6 +24,8 @@
     <Folder Include="Content\Images\ContentPage\" />
     <Folder Include="Content\Images\ContactPage\" />
     <Folder Include="Content\Images\Icon\" />
+    <Folder Include="Content\Images\ServiceItem\" />
+    <Folder Include="Content\Images\ServicePage\" />
     <Folder Include="Content\Images\Section\" />
   </ItemGroup>
 
