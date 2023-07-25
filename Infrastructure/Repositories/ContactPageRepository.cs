@@ -100,7 +100,7 @@ namespace Infrastructure.Repositories
             }
         }
 
-        public async Task<dynamic> Insert(ConcatDto dto)
+        public async Task<dynamic> Insert( ConcatDto dto)
         {
             IFormFile file = dto.bg;
             string NewName = Guid.NewGuid().ToString() + file.FileName;
@@ -111,23 +111,23 @@ namespace Infrastructure.Repositories
             file.CopyTo(fs);
             fs.Position = 0;
 
-            //IFormFile file2 = dto.web;
-            //string NewName2 = Guid.NewGuid().ToString() + file2.FileName;
-            //FileStream fs2 = new FileStream(
-            //     Path.Combine(Directory.GetCurrentDirectory(),
-            //      "Content", "Images", "ContactPage", NewName2)
-            //     , FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            //file2.CopyTo(fs2);
-            //fs2.Position = 0;
+            IFormFile file2 = dto.web;
+            string NewName2 = Guid.NewGuid().ToString() + file2.FileName;
+            FileStream fs2 = new FileStream(
+                 Path.Combine(Directory.GetCurrentDirectory(),
+                  "Content", "Images", "ContactPage", NewName2)
+                 , FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            file2.CopyTo(fs2);
+            fs2.Position = 0;
 
-            //IFormFile file3 = dto.Image;
-            //string NewName3 = Guid.NewGuid().ToString() + file3.FileName;
-            //FileStream fs3 = new FileStream(
-            //     Path.Combine(Directory.GetCurrentDirectory(),
-            //      "Content", "Images", "ContactPage", NewName3)
-            //     , FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            //file3.CopyTo(fs3);
-            //fs3.Position = 0;
+            IFormFile file3 = dto.Image;
+            string NewName3 = Guid.NewGuid().ToString() + file3.FileName;
+            FileStream fs3 = new FileStream(
+                 Path.Combine(Directory.GetCurrentDirectory(),
+                  "Content", "Images", "ContactPage", NewName3)
+                 , FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            file3.CopyTo(fs3);
+            fs3.Position = 0;
 
             var ContactPage = new Contact
             {
@@ -149,8 +149,8 @@ namespace Infrastructure.Repositories
                     phone = dto.phone,
                     email = dto.email,
                     fax = dto.fax,
-                    web = NewName,
-                    image = NewName,
+                    web = NewName2,
+                    image = NewName3,
                      ContactIcons = new ContactIcons
                     {
                         title = dto.IcontTitle,
@@ -164,6 +164,29 @@ namespace Infrastructure.Repositories
 
             return ContactPage;
             
+        }
+
+        public async Task<dynamic> InsertIcon(IconDto dto)
+        {
+            IFormFile file = dto.icon;
+            string NewName = Guid.NewGuid().ToString() + file.FileName;
+            FileStream fs = new FileStream(
+                 Path.Combine(Directory.GetCurrentDirectory(),
+                  "Content", "Images", "Icon", NewName)
+                 , FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            file.CopyTo(fs);
+            fs.Position = 0;
+            var IconItem = new Icon
+            {
+                title = dto.title,
+                titleAR = dto.titleAR,
+                url = dto.url,
+                icon = NewName,
+                ContactIconsId = dto.ContactIconDtoId
+            };
+            await constructionContext.AddAsync(IconItem);
+            constructionContext.SaveChanges();
+            return IconItem;
         }
 
     }

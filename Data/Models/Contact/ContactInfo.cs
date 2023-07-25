@@ -21,7 +21,7 @@ namespace Data.Models.Contact
         public string subTitle2 { set; get;}
         public string subTitle2AR { set; get;}
         // Address object 
-        public int phone { set; get; }
+        public string phone { set; get; }
         public string fax { set; get;  }
         public string email { set; get;  }
         public string web { set; get;  }
@@ -30,8 +30,8 @@ namespace Data.Models.Contact
         [ForeignKey("Contact")]
         public int ContactId { set; get; }
         [JsonIgnore]
-        public Contact Contact { set; get; } = new Contact();
-        public ContactIcons ContactIcons { set; get; } = new ContactIcons();
+        public Contact Contact { set; get; } 
+        public ContactIcons ContactIcons { set; get; } 
 
 
 

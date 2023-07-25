@@ -12,12 +12,12 @@ namespace Data.Models.Contact
     {
         public string title { set; get; }
         public string titleAR { set; get;  }
-        public ICollection<Icon> Icons { set; get;  } = new HashSet<Icon>();
+        public ICollection<Icon> Icons { set; get;  } 
 
         [ForeignKey("ContactInfo")]
         public int ContactInfoId { set; get; }
         [JsonIgnore]
-        public ContactInfo ContactInfo { set; get;  } = new ContactInfo();
+        public ContactInfo ContactInfo { set; get;  } 
 
 
     }

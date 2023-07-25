@@ -10,7 +10,8 @@ namespace Infrastructure.Repositories
     public interface IContactPageRepository
     {
         public Task<dynamic> GetAll(string Lang);
-        public  Task<dynamic> Insert(ConcatDto dto);
+        public  Task<dynamic> Insert( ConcatDto dto);
+        public Task<dynamic> InsertIcon(IconDto iconDto);
 
     }
 }

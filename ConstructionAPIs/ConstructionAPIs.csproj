@@ -23,6 +23,7 @@
     <Folder Include="Content\Images\AboutPage\" />
     <Folder Include="Content\Images\ContentPage\" />
     <Folder Include="Content\Images\ContactPage\" />
+    <Folder Include="Content\Images\Icon\" />
     <Folder Include="Content\Images\Section\" />
   </ItemGroup>
 

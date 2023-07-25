@@ -17,7 +17,7 @@ namespace ConstructionAPIs.Controllers
         }
 
         [HttpGet("GetAll")]
-        public async Task<IActionResult> Get(string Lang="EN")
+        public async Task<IActionResult> Get(string Lang = "EN")
         {
             var res = await contactPageRepository.GetAll(Lang);
             return Ok(res);
@@ -29,6 +29,16 @@ namespace ConstructionAPIs.Controllers
                 return BadRequest("Poster is required!");
             var result = await contactPageRepository.Insert(dto);
             return Ok(result);
+        }
+
+        [HttpPost("InsertIcon")]
+        public async Task<IActionResult> CreateIcon([FromForm] IconDto dto)
+        {
+            if (dto.icon == null)
+                return BadRequest("Icon is required!");
+            var result = await contactPageRepository.InsertIcon(dto);
+            return Ok(result);
+
         }
     }
 }

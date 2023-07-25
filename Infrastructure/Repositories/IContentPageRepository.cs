@@ -12,7 +12,7 @@ namespace Infrastructure.Repositories
     {
         public Task<dynamic> GetAll(string Lang);
         public  Task<dynamic> InsertContent(ContentDto dto);
-        public  Task<dynamic> InsertItem(ContentItemDto dto , int id);
+        public  Task<dynamic> InsertItem(ContentItemDto dto );
 
     }
 }
